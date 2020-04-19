@@ -36,7 +36,6 @@ Here is the list of commands available with a short syntax reminder. Use the
   revoke <filename_base> [cmd-opts]
   renew <filename_base> [cmd-opts]
   build-serverClient-full <filename_base> [ cmd-opts ]
-  build-inline <filename_base>
   gen-crl
   update-db
   show-req <filename_base> [ cmd-opts ]
@@ -2448,9 +2447,6 @@ case "$cmd" in
 		;;
 	build-serverClient-full)
 		build_full serverClient "$@"
-		;;
-	build-inline)
-		build_inline "$@"
 		;;
 	gen-crl)
 		gen_crl
