@@ -1275,11 +1275,15 @@ gen_crl() {
 	verify_ca_init
 
 	out_file="$EASYRSA_PKI/crl.pem"
+	old_file="$EASYRSA_PKI/crl.old"
+	[ -f "$out_file" ] && mv "$out_file" "$old_file"
+
 	out_file_tmp="$(easyrsa_mktemp)" || die "Failed to create temporary file"
 	easyrsa_openssl ca -utf8 -gencrl -out "$out_file_tmp" ${EASYRSA_PASSIN:+-passin "$EASYRSA_PASSIN"} || die "\
 CRL Generation failed.
 "
 	mv "$out_file_tmp" "$out_file"
+	[ -f "$out_file" ] && rm "$old_file"
 
 	notice "\
 An updated CRL has been created.
